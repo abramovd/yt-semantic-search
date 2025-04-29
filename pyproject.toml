@@ -1,0 +1,17 @@
+[project]
+name = "yt-semantic-search"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "hf-xet>=1.0.5",
+    "mariadb>=1.1.12",
+    "mariadb-vector>=0.3.0",
+    "nltk>=3.9.1",
+    "numpy>=2.2.5",
+    "sentence-transformers>=4.1.0",
+    "sqlmodel>=0.0.24",
+    "transformers>=4.51.3",
+    "youtube-transcript-api>=1.0.3",
+]
