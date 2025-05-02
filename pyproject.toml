@@ -10,8 +10,10 @@ dependencies = [
     "mariadb-vector>=0.3.0",
     "nltk>=3.9.1",
     "numpy>=2.2.5",
+    "pydantic>=2.11.4",
+    "rich>=14.0.0",
     "sentence-transformers>=4.1.0",
-    "sqlmodel>=0.0.24",
     "transformers>=4.51.3",
+    "typer>=0.15.3",
     "youtube-transcript-api>=1.0.3",
 ]

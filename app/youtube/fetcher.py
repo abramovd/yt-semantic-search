@@ -2,6 +2,7 @@ import pickle
 import logging
 from os import path
 from pathlib import Path
+from typing import Protocol
 from youtube_transcript_api import (
     YouTubeTranscriptApi, FetchedTranscript, TranscriptsDisabled, NoTranscriptFound,
 )
@@ -9,6 +10,11 @@ from youtube_transcript_api import (
 logger = logging.getLogger(__name__)
 
 PICKLE_DIR = Path(__file__).resolve().parents[2] / "data" / "youtube_transcripts"
+
+
+class YouTubeTranscriptFetcherWithCache:
+    def fetch(self, video_id: str) -> FetchedTranscript:
+        return fetch_video_transcript_with_cache(video_id)
 
 
 def fetch_video_transcript(video_id: str, to_pickle: bool) -> FetchedTranscript:

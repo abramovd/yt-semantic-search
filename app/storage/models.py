@@ -1,27 +1,38 @@
-# from sqlmodel import SQLModel, Field, Relationship, JSON, Column, String, Text
-# from sqlalchemy.dialects.mysql import JSON
-# from typing import Optional, List
-# from mariadb_vector import Vector
-# from datetime import datetime
+import numpy as np
 
-# # class Document(SQLModel, table=True):
-# #     id: Optional[int] = Field(default=None, primary_key=True)
-# #     title: str = Field(sa_column=Column(String(512)))
-# #     created_at: datetime = Field(default_factory=datetime.utcnow)
-# #     meta: dict = Field(sa_type=JSON, nullable=False)
-
-# #     chunks: List["Chunk"] = Relationship(back_populates="document")
+from pydantic import BaseModel, Field
+from datetime import datetime
 
 
-# # class Chunk(SQLModel, table=True):
-# #     id: Optional[int] = Field(default=None, primary_key=True)
+class Document(BaseModel):
+    id: int | None = None
+    title: str
+    created_at: datetime
+    url: str
+    meta: dict = Field(default_factory=dict)
 
-# #     chunk_index: int
-# #     start_ts: int
-# #     end_ts: int
-# #     text: str = Field(sa_column=Column(Text))
 
-# #     document_id: int = Field(foreign_key="document.id")
-# #     document: Document | None = Relationship(back_populates="chunks")
+class Chunk(BaseModel):
+    id: int | None = None
+    chunk_index: int
+    start_ts: float
+    end_ts: float
+    text: str
 
-# #     embedding: list[float] = Field(sa_column=Column(Vector(384)))
+    document_id: int
+
+    embedding: np.ndarray
+
+    class Config:
+        arbitrary_types_allowed = True
+
+
+class SearchResultChunk(BaseModel):
+    id: int | None = None
+    chunk_index: int
+    start_ts: float
+    end_ts: float
+    text: str
+    distance: float
+    document_title: str
+    document_url: str

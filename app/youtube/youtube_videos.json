@@ -1,0 +1,46 @@
+[
+    {
+        "id": "XVcRQ6T9RHo",
+        "title": "The Python Global Interpreter Lock - Explained"
+    },
+    {
+        "id": "oVhJAVS3g00",
+        "title": "Working Around the GIL with asyncio"
+    },
+    {
+        "id": "2sEPipctTxw",
+        "title": "Reinventing Django for the Real-Time Web"
+    },
+    {
+        "id": "07QqFYILP4w",
+        "title": "Modern Python through FastAPI and friends"
+    },
+    {
+        "id": "miQwGPbPg_M",
+        "title": "The Python packaging ecosystem – Simple guidelines for packaging"
+    },
+    {
+        "id": "ch9Q-hk-MOw",
+        "title": "Kivy: Cross-platform App development for Pythonistas"
+    },
+    {
+        "id": "G03B4ZM93bs",
+        "title": "Load testing with Python and Locust"
+    },
+    {
+        "id": "EyDeULspv8s",
+        "title": "Debugging Python by Juha-Matti Santala"
+    },
+    {
+        "id": "lF83soaMzLQ",
+        "title": "What if your code could be as simple as your business logic? by Raphaël Beamonte"
+    },
+    {
+        "id": "iQQaBYMZ_mU",
+        "title": "Alex Monahan, Gabor Szarnyas: Python and SQL: Better Together, Powered by DuckDB"
+    },
+    {
+        "id": "g_P2yFBW5uE",
+        "title": "Patrick Hoefler: Pandas + Dask DataFrame 2.0 - Comparison to Spark, DuckDB and Polars"
+    }
+]

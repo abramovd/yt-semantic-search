@@ -3,7 +3,7 @@ from transformers import PreTrainedTokenizer
 from nltk import sent_tokenize
 
 class ChunkMetadata:
-    def __init__(self, start_time: int, duration: int):
+    def __init__(self, start_time: float, duration: float):
         self.start_time = start_time
         self.end_time = self.start_time + duration
 
