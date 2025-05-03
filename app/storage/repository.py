@@ -1,4 +1,5 @@
 import json
+from typing import Tuple
 
 import numpy as np
 from app.storage.models import Document, Chunk, SearchResultChunk
@@ -62,6 +63,23 @@ class NativeMariadDBRepository:
         cursor = self.connection.cursor(dictionary=True)
         cursor.execute("SELECT id, title, created_at, url, meta FROM semantic_search.documents")
         return [_dict_to_document(row) for row in cursor.fetchall()]
+    
+    def list_documents_paginated(self, limit: int, offset: int) -> Tuple[list[Document], int]:
+        """List documents with pagination."""
+        # First, get the total count
+        count_cursor = self.connection.cursor()
+        count_cursor.execute("SELECT COUNT(*) FROM semantic_search.documents")
+        total_count = count_cursor.fetchone()[0]
+        
+        # Then get the paginated results
+        cursor = self.connection.cursor(dictionary=True)
+        cursor.execute(
+            "SELECT id, title, created_at, url, meta FROM semantic_search.documents ORDER BY id LIMIT %s OFFSET %s",
+            (limit, offset)
+        )
+        
+        documents = [_dict_to_document(row) for row in cursor.fetchall()]
+        return documents, total_count
     
     def get_document(self, document_id: int) -> Document:
         cursor = self.connection.cursor(dictionary=True)

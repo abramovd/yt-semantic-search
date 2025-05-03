@@ -1,6 +1,6 @@
 import numpy as np
 
-from typing import Protocol
+from typing import Protocol, Optional, Tuple
 from youtube_transcript_api import FetchedTranscript
 from sentence_transformers import SentenceTransformer
 
@@ -31,6 +31,22 @@ class TranscriptFetcher(Protocol):
 
 class ReadOnlyRepository(Protocol):
     def list_documents(self) -> list[Document]:
+        """List all documents (legacy method)."""
+        ...
+
+    def list_documents_paginated(self, limit: int, offset: int) -> Tuple[list[Document], int]:
+        """
+        List documents with pagination.
+        
+        Args:
+            limit: Maximum number of documents to return
+            offset: Number of documents to skip
+            
+        Returns:
+            Tuple containing:
+            - List of documents for the requested page
+            - Total count of all documents
+        """
         ...
 
     def get_document(self, document_id: int) -> Document:
