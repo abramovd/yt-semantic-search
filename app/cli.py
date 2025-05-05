@@ -120,7 +120,7 @@ def output_search_results(results: list[SearchResultChunk]):
         table.add_row(
             result.document_title,
             result.document_url,
-            result.text,
+            result.text[:100]+ " ... (truncated)",
             f"{result.distance:.2f}",
             str(result.start_ts),
             str(result.end_ts),

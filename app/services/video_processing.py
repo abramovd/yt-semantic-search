@@ -49,7 +49,7 @@ class VideoProcessingService:
             logger.info(f"Document {video.id} already exists, skipping")
             return
 
-        logger.info("Document doesn ot exists, fetching transcript")
+        logger.info("Document does not exist, fetching transcript")
         transcript = self.transcript_fetcher.fetch(video.id)
 
         logger.info("Splitting text into chunks for future embedding")
@@ -68,6 +68,7 @@ class VideoProcessingService:
         )
 
         self._insert_vectors(doc, chunks, vectors)
+        logger.info("Document and chunks inserted into database")
 
     def export_videos_as_json_file(self, file_path: Path):
         documents = self.repo.list_documents()

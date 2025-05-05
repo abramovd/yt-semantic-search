@@ -10,6 +10,10 @@ A semantic search application for YouTube videos based on captions.
 - Web UI with Gradio
 - Command-line interface with Typer
 
+
+<img src="https://vhs.charm.sh/vhs-6q16oujtXo3N0OAQJJPQJp.gif">
+
+
 ## Architecture
 
 This project demonstrates integration between:
