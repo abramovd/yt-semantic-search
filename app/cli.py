@@ -6,7 +6,7 @@ from app.services.video_processing import get_default_video_processing_service
 from app.services.search import get_default_video_search_service
 from app.services.crud import get_default_video_crud
 from app.storage.models import SearchResultChunk
-from app.logging import setup_rich_logging
+from app.logs import setup_rich_logging
 from app.youtube.data_loader import Video
 
 from rich.table import Table
@@ -103,7 +103,7 @@ def get_video_table():
 
 def output_video(video: Video, table: Table | None = None, console_print: bool = True):
     table = table or get_video_table()
-    table.add_row(video.id,video.title, video.url, json.dumps(video.meta))
+    table.add_row(str(video.internal_id), video.title, video.url, json.dumps(video.meta))
     if console_print:
         console.print(table)
 

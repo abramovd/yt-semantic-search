@@ -1,8 +1,6 @@
 import pickle
 import logging
-from os import path
 from pathlib import Path
-from typing import Protocol
 from youtube_transcript_api import (
     YouTubeTranscriptApi, FetchedTranscript, TranscriptsDisabled, NoTranscriptFound,
 )

@@ -1,6 +1,6 @@
 import numpy as np
 
-from typing import Protocol, Optional, Tuple
+from typing import Protocol, Tuple
 from youtube_transcript_api import FetchedTranscript
 from sentence_transformers import SentenceTransformer
 

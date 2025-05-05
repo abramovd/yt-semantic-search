@@ -18,3 +18,9 @@ dependencies = [
     "youtube-transcript-api>=1.0.3",
     "gradio>=4.26.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.8",
+]

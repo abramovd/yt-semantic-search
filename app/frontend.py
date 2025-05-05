@@ -2,12 +2,13 @@ import gradio as gr
 import json
 import re
 import math
-from typing import List, Dict, Any, Tuple
+from typing import List, Tuple
 
 from app.services.search import get_default_video_search_service
 from app.services.crud import get_default_video_crud
 from app.storage.models import SearchResultChunk
 from app.youtube.data_loader import Video
+from app.logs import setup_console_logging
 
 # YouTube thumbnail URL format
 YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
@@ -283,8 +284,9 @@ def create_ui() -> gr.Blocks:
 
 def main():
     """Run the Gradio app."""
+    setup_console_logging()
     app = create_ui()
-    app.launch(server_name="0.0.0.0")
+    app.launch(server_name="0.0.0.0", server_port=7860)
 
 if __name__ == "__main__":
-    main() 
+    main()

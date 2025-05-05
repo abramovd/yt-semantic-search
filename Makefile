@@ -1,24 +1,17 @@
 .PHONY: build up down logs ps clean
 
-# Build the containers
 build:
 	docker-compose build
 
-# Start the containers in detached mode
 up:
-	docker-compose up -d
+	docker-compose up
 
 # Stop the containers
 down:
 	docker-compose down
 
-# View logs
 logs:
 	docker-compose logs -f
-
-# Show running containers
-ps:
-	docker-compose ps
 
 # Clean up containers, volumes, and images
 clean:
@@ -31,6 +24,12 @@ start: build up
 # Restart the application
 restart: down up
 
-# Show logs for a specific service (usage: make service-logs SERVICE=app)
-service-logs:
-	docker-compose logs -f $(SERVICE) 
+# Run tests (uses app service by default)
+test:
+	docker-compose run --rm app uv run pytest
+
+lint:
+	docker-compose run --rm app uv run ruff check .
+
+lint-fix:
+	docker-compose run --rm app uv run ruff check --fix .

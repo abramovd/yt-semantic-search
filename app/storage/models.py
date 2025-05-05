@@ -1,6 +1,6 @@
 import numpy as np
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime
 
 
@@ -23,8 +23,7 @@ class Chunk(BaseModel):
 
     embedding: np.ndarray
 
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class SearchResultChunk(BaseModel):

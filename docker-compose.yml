@@ -1,7 +1,24 @@
-version: '3.8'
-
 services:
-  mariadb:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7860:7860"  # Gradio UI
+    environment:
+      - DB_USER=app_user
+      - DB_PASSWORD=Password123!
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=semantic_search
+    volumes:
+      - ./:/app
+      - ./data:/app/data
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
     image: mariadb:11.7-rc
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword

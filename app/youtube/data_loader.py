@@ -8,7 +8,7 @@ YOUTUBE_VIDEO_URL_PREFIX = "https://www.youtube.com/watch?v="
 
 
 class Video(BaseModel):
-    internal_id: int | None
+    internal_id: int | None = None
     id: str
     title: str
     meta: dict = Field(default_factory=dict)

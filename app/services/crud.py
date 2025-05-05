@@ -1,23 +1,24 @@
-from pydantic import BaseModel
 from typing import Tuple, List
 
 from app.youtube.data_loader import Video
 from app.services.protocols import ReadOnlyRepository
-from app.services.video_processing import (
-    VideoProcessingService, 
-    get_default_video_processing_service,
-)
 from app.storage.repository import NativeMariadDBRepository
 
 class VideoCRUD:
     def __init__(self, repository: ReadOnlyRepository):
         self.repository = repository
 
-    def get_video(self, video_id: int):
+    def get_video(self, video_id: int) -> Video:
         document = self.repository.get_document(video_id)
-        return Video(id=str(document.id), url=document.url, title=document.title, meta=document.meta)
+        return Video(
+            id=document.url.split("=")[-1], 
+            url=document.url, 
+            title=document.title, 
+            internal_id=document.id,
+            meta=document.meta,
+        )
 
-    def list_videos(self):
+    def list_videos(self) -> List[Video]:
         """Legacy method for backwards compatibility."""
         documents = self.repository.list_documents()
         return [

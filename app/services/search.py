@@ -14,7 +14,9 @@ class VideoSearchService:
         self.embedder = embedder
 
     def search(self, query: str, num_neighbors: int = config.NUM_SEARCH_NEIGHBORS) -> list[SearchResultChunk]:
+        logger.info(f"Embedding query: {query}")
         query_vector = self.embedder.embed_text(query)
+        logger.info(f"Searching in vector store with {num_neighbors} neighbors")
         return self.repo.search(query_vector, num_neighbors=num_neighbors)
 
 def get_default_video_search_service() -> VideoSearchService:
